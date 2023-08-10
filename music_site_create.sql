@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS albums (
 	release_date DATE NOT NULL CHECK (release_date > '1900-01-01')
 );
 
-CREATE TABLE IF NOT EXISTS aracks (
+CREATE TABLE IF NOT EXISTS tracks (
 	track_id SERIAL PRIMARY KEY,
 	name VARCHAR(80) NOT NULL,
 	duration INTEGER NOT NULL CHECK (duration > 0),
