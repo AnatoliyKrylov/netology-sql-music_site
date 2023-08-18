@@ -18,7 +18,7 @@ SELECT name FROM artists
 
 -- Название треков, которые содержат слово «мой» или «my».
 SELECT name FROM tracks
- WHERE name LIKE '%мой%' OR name LIKE '%my%';
+ WHERE name ILIKE '% мой %' OR name ILIKE '% my %';
 
 -- Задание 3
 -- Количество исполнителей в каждом жанре.
@@ -37,11 +37,13 @@ SELECT a.name, AVG(t.duration) FROM albums AS a
  GROUP BY a.name;
 
 -- Все исполнители, которые не выпустили альбомы в 2020 году.
-SELECT ar.name FROM artists AS ar
-  JOIN albums_artists AS aa ON ar.artist_id = aa.artist_id
-  JOIN albums AS al ON aa.album_id = al.album_id
- WHERE al.release_date NOT BETWEEN '2020-01-01' AND '2020-12-31'
- GROUP BY ar.name;
+SELECT name FROM artists
+ WHERE name NOT IN (
+    SELECT ar.name FROM artists AS ar
+      JOIN albums_artists AS aa ON ar.artist_id = aa.artist_id
+      JOIN albums AS al ON aa.album_id = al.album_id
+      WHERE al.release_date BETWEEN '2020-01-01' AND '2020-12-31')
+ GROUP BY name;
 
 -- Названия сборников, в которых присутствует конкретный исполнитель (Michael Jackson).
 SELECT c.name FROM artists AS ar
