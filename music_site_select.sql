@@ -18,7 +18,14 @@ SELECT name FROM artists
 
 -- Название треков, которые содержат слово «мой» или «my».
 SELECT name FROM tracks
- WHERE name ILIKE '% мой %' OR name ILIKE '% my %';
+ WHERE name ILIKE 'мой %' 
+    OR name ILIKE '% мой'
+    OR name ILIKE '% мой %'
+    OR name ILIKE 'мой'
+    OR name ILIKE 'my %'
+    OR name ILIKE '% my'
+    OR name ILIKE '% my %'
+    OR name ILIKE 'my';
 
 -- Задание 3
 -- Количество исполнителей в каждом жанре.
